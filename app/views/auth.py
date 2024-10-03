@@ -14,12 +14,12 @@ def register():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['e-mail']
-        password = request.form['mot_de_passe']
-        Nom = request.form['Nom']
-        Prenom = request.form ['Prenom']
-        telephone= request.form['telephone']
-        adresse= request.form['adresse']
+        username = request.form['username']
+        password = request.form['password']
+        # Nom = request.form['nom']
+        # Prenom = request.form ['prenom']
+        # telephone= request.form['telephone']
+        # adresse= request.form['adresse']
 
 
         # On récupère la base de donnée
@@ -29,7 +29,7 @@ def register():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
-                db.execute("INSERT INTO personnes (e-mail, Nom, prenom, telephone, adresse) VALUES (?, ?),"(username,Nom,Prenom,telephone,adresse, generate_password_hash(password)))
+                db.execute ("INSERT INTO personnes (email, mot_de_passe) VALUES (?, ?)",(username, generate_password_hash(password)))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
                 # On ferme la connexion à la base de données pour éviter les fuites de mémoire
@@ -60,15 +60,15 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['e-mail']
-        password = request.form['mot_de_passe']
+        email = request.form['username']
+        password = request.form['password']
 
         # On récupère la base de données
         db = get_db()
         
         # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
         # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
-        user = db.execute('SELECT * FROM personnes WHERE telephone = ?', (username,)).fetchone()
+        user = db.execute('SELECT * FROM personnes WHERE email = ?', (email,)).fetchone()
 
         # On ferme la connexion à la base de données pour éviter les fuites de mémoire
         close_db()
