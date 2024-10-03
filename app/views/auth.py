@@ -14,8 +14,13 @@ def register():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['e-mail']
+        password = request.form['mot_de_passe']
+        Nom = request.form['Nom']
+        Prenom = request.form ['Prenom']
+        telephone= request.form['telephone']
+        adresse= request.form['adresse']
+
 
         # On récupère la base de donnée
         db = get_db()
@@ -24,7 +29,7 @@ def register():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
-                db.execute("INSERT INTO personnes (Nom, prenom, telephone, e-mail, adress) VALUES (?, ?)",(username, generate_password_hash(password)))
+                db.execute("INSERT INTO personnes (e-mail, Nom, prenom, telephone, adresse) VALUES (?, ?),"(username,Nom,Prenom,telephone,adresse, generate_password_hash(password)))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
                 # On ferme la connexion à la base de données pour éviter les fuites de mémoire
@@ -41,7 +46,7 @@ def register():
             return redirect(url_for("auth.login"))
          
         else:
-            error = "Nom d'utilisateur ou mot de passe invalide"
+            error = "e-mail ou mot de passe invalide"
             flash(error)
             return redirect(url_for("auth.login"))
     else:
@@ -55,8 +60,8 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['e-mail']
+        password = request.form['mot_de_passe']
 
         # On récupère la base de données
         db = get_db()
@@ -73,7 +78,7 @@ def login():
         error = None
         if user is None:
             error = "Nom d'utilisateur incorrect"
-        elif not check_password_hash(user['password'], password):
+        elif not check_password_hash(user['mot_de_passe'], password):
             error = "Mot de passe incorrect"
 
         # S'il n'y pas d'erreur, on ajoute l'id de l'utilisateur dans une variable de session
