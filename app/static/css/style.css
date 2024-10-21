@@ -111,7 +111,7 @@ header{
     color: white;
 }
 
-.content-index, .content-404, .content-register, .content-profile{
+.content-index, .content-404, .content-profile{
     height:80vh;
     display: flex;
     align-items: center;
@@ -126,6 +126,26 @@ header{
     text-align:center;
 }
 
+/* mes modifications */
+.content-login{
+  height:80vh;
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #8b8d8d;
+  
+  
+}
+.content-login form * {
+  margin-bottom: 15px; /* Adds 15px space below each form element */
+}
 
-
+#login_title{
+  
+}
 

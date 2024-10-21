@@ -60,7 +60,7 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        email = request.form['username']
+        email = request.form['e-mail']
         password = request.form['password']
 
         # On récupère la base de données

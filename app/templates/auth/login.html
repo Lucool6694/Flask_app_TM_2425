@@ -5,13 +5,16 @@
 {% endblock %}
 
 {% block content %}
-  <div class="content-register">
+  <div class="content-login">
     <div>
+      <h1 id="login_title"> Connexion</h1>
       <form method="post">
-        <label for="username">Nom d'utilisateur</label>
-        <input name="username" id="username" required>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="password" id="password" required>
+        <label for="e-mail">E-mail<br /></label>
+        <input name="e-mail" id="e-mail" required><br />
+
+        <label for="password">Mot de passe<br /></label>
+        <input type="password" name="password" id="password" required><br />
+
         <input type="submit" value="Se connecter">
       </form>
 
