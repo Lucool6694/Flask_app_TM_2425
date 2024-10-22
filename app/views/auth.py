@@ -13,23 +13,23 @@ def register():
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
 
-        # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
+        
+        
+        nom = request.form['nom']
+        prenom = request.form ['prenom']
+        telephone= request.form['telephone']
+        adresse= request.form['adresse']
+        email = request.form['e-mail']
         password = request.form['password']
-        # Nom = request.form['nom']
-        # Prenom = request.form ['prenom']
-        # telephone= request.form['telephone']
-        # adresse= request.form['adresse']
-
 
         # On récupère la base de donnée
         db = get_db()
 
         # Si le nom d'utilisateur et le mot de passe ont bien une valeur
         # on essaie d'insérer l'utilisateur dans la base de données
-        if username and password:
+        if nom and prenom and telephone and adresse and email and password:
             try:
-                db.execute ("INSERT INTO personnes (email, mot_de_passe) VALUES (?, ?)",(username, generate_password_hash(password)))
+                db.execute ("INSERT INTO personnes (nom, prenom, telephone, adresse, email, mot_de_passe) VALUES (?, ?, ?, ?, ?, ?)",(nom, prenom, telephone, adresse, email, generate_password_hash(password)))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
                 # On ferme la connexion à la base de données pour éviter les fuites de mémoire
