@@ -13,6 +13,7 @@
       <ul>
         <li>Nom d'utilisateur: {{g.user.username}}</li>
         <li>Mot de passe: {{g.user.password}}</li>
+        <li><a href="{{ url_for('auth.logout') }}">Se déconnecter</a></li>
       </ul>
     </div>
   </div>  
