@@ -10,15 +10,16 @@
             
             <ul id="header-nav-menu">
                 {% if g.user %}
-                    <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a>
-                    <li><a href="{{ url_for('auth.register') }}">Infos</a>
-                    <li><a href="{{ url_for('auth.register') }}">Prendre rendez-vous</a>
-                    <li><a href="{{url_for('user.show_profile')}}">Consulter son profil</a></li>
+                    <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a></li>
+                    <li><a href="{{ url_for('informations.info') }}">Infos</a></li>
+                    <li id="rendezvous"><a  href="{{ url_for('rdv.prendre_rendez_vous') }}">Prendre rendez-vous</a></li>
+                    <li><a href="{{url_for('user.show_profile')}}">
+                        <img id="header-logo" src="{{url_for('static', filename='imgs/profile-photo.png')}}" alt="profile-photo"></a></li>
                 {% else %}
-                    <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a>
-                    <li><a href="{{ url_for('auth.register') }}">Infos</a>
-                    <li><a href="{{ url_for('auth.register') }}">Prendre rendez-vous</a>
-                    <li><a href="{{ url_for('auth.login') }}">Connexion</a>
+                    <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a></li>
+                    <li><a href="{{ url_for('informations.info') }}">Infos</a></li>
+                    <li id="rendezvous"><a href="{{ url_for('rdv.prendre_rendez_vous') }}">Prendre rendez-vous</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">Connexion</a></li>
                 {% endif %}
             </ul>
         </nav>
