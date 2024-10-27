@@ -56,6 +56,7 @@ header{
     height: 100%;
     display: flex;
     flex-direction: row;
+    
 }
 
 
@@ -71,7 +72,7 @@ header{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20%;
+    gap: 18%;
     
     
     
@@ -87,6 +88,7 @@ header{
 
 #header-nav a{
     color: white;
+    font-size: 150%;
     text-decoration: none;
 }
 
@@ -173,9 +175,11 @@ header{
 }
 .content-login form * {
   margin-bottom: 15px; 
+  font-size: 150%;
 }
 
 .content-register{
+  font-size: 130%;
   height:100vh;
   display: flex;
   margin-left: 12%;
@@ -198,3 +202,35 @@ header{
   
 }
 
+
+.title{
+  height: 200px; ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom,black,blue);
+  
+}
+.title h1{
+ font-size: 400%;
+ color: white;
+
+}
+
+
+.home-blog{
+ height: 80vh;
+
+
+}
+
+#connexion-button{
+ color: white;
+ background-color: rgb(51, 110, 249);
+
+
+}
+#connexion-text{
+ font-size: 100%;
+
+}
