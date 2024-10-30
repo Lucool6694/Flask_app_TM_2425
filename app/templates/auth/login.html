@@ -15,11 +15,19 @@
         <label  for="password">Mot de passe<br /></label>
         <input type="password" name="password" id="password" required><br />
 
-        <input id="connexion-button" type="submit" value="Connexion"><br />
+        <div class="connexion-center">
 
-        <p id="connexion-text" style="display: inline;">pas de compte?</p>
-        <a id="connexion-text" href="{{ url_for('auth.register') }}" style="display: inline;">s'inscrire</a>
-      </form>
+          <input id="connexion-button" type="submit" value="Connexion">
+
+          <div class="connexion-bas-de-page">
+
+            <p id="connexion-text" style="display: inline;">pas de compte?</p>
+            <a id="connexion-text" href="{{ url_for('auth.register') }}" style="display: inline;">s'inscrire</a>
+
+
+          </div>
+        </div>
+    </form>
 
       {% for message in get_flashed_messages() %}
         <div>{{ message }}</div>
