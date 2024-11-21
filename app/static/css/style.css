@@ -129,12 +129,12 @@ header{
     text-align:center;
 }
 
-/* mes ajouts */
+
 
 
 #header-logo{
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: 60%;
 
   
 
@@ -168,7 +168,7 @@ header{
 
 
 
-.content-login{
+.content-login, .content-user{
   height:80vh;
   display: flex;
   margin-left: 10%;
@@ -206,10 +206,16 @@ header{
   margin-bottom: 15px; 
 }
 
+.content-profile{
+
+  display: flex;
+  flex-direction: row;
+}
 
 #login_title{
   
 }
+
 
 
 .title{
