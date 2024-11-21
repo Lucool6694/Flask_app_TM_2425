@@ -7,15 +7,22 @@
 {% block content %}
   <div class="content-user">
     <div>
-      <div >
-        <h2>Profil de l'utilisateur connecté</h2>
-        <img id="header-logo" src="{{url_for('static', filename='imgs/profile-photo.png')}}" alt="profile-photo">
-      </div class= >
-      <ul>
-        <li>Nom d'utilisateur: {{g.user.username}}</li>
-        <li>Mot de passe: {{g.user.password}}</li>
-        <li><a href="{{ url_for('auth.logout') }}">Se déconnecter</a></li>
+      <div id="profile-logo">
+        <img  src="{{url_for('static', filename='imgs/avatar.png')}}" alt="profile-photo">
+      </div >
+      <ul class= "profile-content">
+        <li><h3>Nom : {{g.user.nom}}</h3></li>
+        <li><h3>Prénom: {{g.user.prenom}}</h3></li>
+        
       </ul>
+      <div id="logout-button">
+        <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
+
+      </div>
+      <div id="profile-rdv">
+        <h2>Mes rendez-vous</h2>
+
+      </div>
     </div>
   </div>  
 {% endblock %}

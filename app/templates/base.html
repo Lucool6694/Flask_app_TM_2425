@@ -15,7 +15,7 @@
                     <li><a href="{{ url_for('informations.info') }}">Infos</a></li>
                     <li id="rendezvous"><a  href="{{ url_for('rdv.prendre_rendez_vous') }}">Prendre rendez-vous</a></li>
                     <li><a id="header-logo" href="{{url_for('user.show_profile')}}">
-                        <img id="header-logo" src="{{url_for('static', filename='imgs/profile-photo.png')}}" alt="profile-photo"></a></li>
+                        <img id="header-logo" src="{{url_for('static', filename='imgs/header-avatar.png')}}" alt="profile-photo"></a></li>
                 {% else %}
                     <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a></li>
                     <li><a href="{{ url_for('informations.info') }}">Infos</a></li>

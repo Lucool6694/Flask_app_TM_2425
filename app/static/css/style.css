@@ -48,6 +48,12 @@
 -----------------   ADD YOUR CSS RULES BELOW ------------------
 */
 
+/* Header*/
+
+
+
+
+
 header{
     height: 100px;
 }
@@ -100,19 +106,9 @@ header{
     text-decoration: none;
 }
 
-#footer-nav {
-    background-color: black;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
-    gap: 100px;
-}
+/* content*/
 
-#footer-nav p{
-    color: white;
-}
+
 
 .content-index, .content-404, .content-profile{
     height: 80vh;
@@ -130,17 +126,49 @@ header{
 }
 
 
+/* logo*/
+
+
 
 
 #header-logo{
-  width: 60%;
-  height: 60%;
-
+  width: 80%;
+  height: 80%;
   
 
 }
 
 
+#profile-logo{
+  display: flex;
+  justify-content: center;
+
+}
+#profile-logo img{
+  width: 25%;
+  height: 25%;
+  margin-top:5% ;
+  margin-bottom: 5%;
+}
+
+/* footer*/
+
+
+
+
+#footer-nav {
+  background-color: black;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 100px;
+}
+
+#footer-nav p{
+  color: white;
+}
 
 
 #footer-nav-logo{
@@ -166,13 +194,16 @@ header{
   margin-bottom: 30px;
 }
 
+/* content*/
 
 
-.content-login, .content-user{
+
+
+.content-login{
   height:80vh;
   display: flex;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 5%;
   margin-bottom: 5%;
   flex-direction: column;
@@ -206,13 +237,50 @@ header{
   margin-bottom: 15px; 
 }
 
-.content-profile{
-
-  display: flex;
-  flex-direction: row;
+.content-user{
+  height:150vh;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-color: #8b8d8d;
 }
 
+/* profil*/
+
+
+.profile-content{
+
+ display: flex;
+ align-items: center;
+ justify-content: space-evenly;
+ margin-bottom: 15vh;
+ font-size: 110%;
+}
+
+#profile-rdv{
+  display: flex;
+   justify-content: center;
+
+
+}
+
+ 
+
+
+
+
+
+/* titre*/
+
+
+
+
+
 #login_title{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
   
 }
 
@@ -238,6 +306,11 @@ header{
 
 
 }
+/* Connexion*/
+
+
+
+
 
 #connexion-button{
  color: white;
@@ -267,4 +340,12 @@ header{
   flex-direction: row;
   justify-content: center;
 
+}
+
+#logout-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 150%;
+  margin-bottom: 5vh;
 }
