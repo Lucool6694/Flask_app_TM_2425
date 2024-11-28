@@ -19,7 +19,7 @@ def register():
         prenom = request.form ['prenom']
         telephone= request.form['telephone']
         adresse= request.form['adresse']
-        email = request.form['e-mail']
+        email = request.form['email']
         password = request.form['password']
 
         # On récupère la base de donnée
@@ -60,7 +60,7 @@ def login():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        email = request.form['e-mail']
+        email = request.form['email']
         password = request.form['password']
 
         # On récupère la base de données
@@ -77,7 +77,7 @@ def login():
         # on crée une variable error 
         error = None
         if user is None:
-            error = "Nom d'utilisateur incorrect"
+            error = "Email incorrect"
         elif not check_password_hash(user['mot_de_passe'], password):
             error = "Mot de passe incorrect"
 

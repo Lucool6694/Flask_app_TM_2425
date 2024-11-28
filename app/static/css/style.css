@@ -284,7 +284,12 @@ header{
   
 }
 
+#title{
+  display: flex;
+  justify-content: center;
 
+
+}
 
 .title{
   height: 200px; ;
@@ -348,4 +353,51 @@ header{
   justify-content: center;
   font-size: 150%;
   margin-bottom: 5vh;
+}
+
+/*rendez-vous*/
+
+.rdv-non-connexion{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.rdv-connexion{
+  height: 100vh; 
+
+}
+
+.rdv-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#calendar {
+  margin: 50px auto;
+  max-width: 300px;
+}
+
+
+.time-slot {
+  margin: 10px auto;
+  padding: 10px;
+  max-width: 300px;
+  background: #ddd;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+}
+.time-slot.occupied {
+  background: #444;
+  color: white;
+}
+.time-slot a {
+  color: #007bff;
+  text-decoration: none;
 }

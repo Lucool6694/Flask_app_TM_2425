@@ -3,6 +3,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
@@ -11,7 +12,7 @@
             
             <ul id="header-nav-menu">
                 {% if g.user %}
-                    <li><a href="{{ url_for('home.landing_page') }}">Acceuil</a></li>
+                    <li><a href="{{ url_for('home.landing_page') }}">Accueil</a></li>
                     <li><a href="{{ url_for('informations.info') }}">Infos</a></li>
                     <li id="rendezvous"><a  href="{{ url_for('rdv.prendre_rendez_vous') }}">Prendre rendez-vous</a></li>
                     <li><a id="header-logo" href="{{url_for('user.show_profile')}}">
