@@ -367,16 +367,13 @@ header{
 
 .rdv-connexion{
   height: 100vh; 
-
-}
-
-.rdv-form{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
 }
+
+
 
 #calendar {
   margin: 50px auto;

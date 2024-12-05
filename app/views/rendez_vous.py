@@ -2,6 +2,7 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db, close_db
 import os
+from sqlite3 import connect
 
 
 
@@ -52,19 +53,63 @@ def horaire():
     
     selected_date = request.args.get('date')
    
+    all_time_slots = [
+        "08:00", "10:00", "12:00", "14:00", "16:00", "18:00"
+    ]
+
+    # Récupérer les horaires occupés depuis la base de données
+    db = get_db()
+    cur=db.cursor()
+    cur.execute ('SELECT heure FROM "rendez-vous" WHERE date = ?', (selected_date, ))
+    occupied_slots = [row[0] for row in cur.fetchall()]
+    db.commit()
+    close_db()
+
+    # Créer un dictionnaire indiquant la disponibilité de chaque créneau
     time_slots = {
-        "08:00": "Occupied",
-        "10:00": "Available",
-        "12:00": "Available",
-        "14:00": "Occupied",
-        "16:00": "Available",
-        "18:00": "Available"
+        slot: "Occupé" if slot in occupied_slots else "Disponible"
+        for slot in all_time_slots
     }
-    return render_template('rdv/rendez-vous_horaire.html', date=selected_date, time_slots=time_slots)                
+
+    # Retourner le template avec les informations nécessaires
+    return render_template('rdv/rendez-vous_horaire.html', date=selected_date, time_slots=time_slots)
+
+              
         
     
             
+@rdv_bp.route('/réserver', methods=['GET', 'POST'])
+def reserver():
+    selected_date = request.args.get('date')
+    selected_time = request.args.get('time')
+    
 
+    
+    if request.method == 'POST':
+
+        
+        motif=request.form.get('motif')
+        db = get_db()
+        
+
+        if selected_time and selected_date and motif:
+
+            try:                   
+                db.execute ("INSERT INTO 'rendez-vous' (heure, date, motif) VALUES (?, ?, ?)",(selected_time, selected_date, motif))
+                # db.commit() permet de valider une modification de la base de données
+                db.commit()
+                # On ferme la connexion à la base de données pour éviter les fuites de mémoire
+                close_db()
+                
+                
+            except Exception as e:  # Catch all exceptions for debugging
+                error = f"An error occurred: {e}"
+                flash(error)   
+    
+            return redirect("/")
+                
+    else:
+        return render_template('rdv/rendez-vous_motif.html', date=selected_date, time=selected_time)
 
     
              
