@@ -260,10 +260,13 @@ header{
 
 #profile-rdv{
   display: flex;
-   justify-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 
 }
+
 
  
 
@@ -381,7 +384,7 @@ header{
 }
 
 
-.time-slot {
+.plage-horaire {
   margin: 10px auto;
   padding: 10px;
   max-width: 300px;
@@ -389,12 +392,31 @@ header{
   color: black;
   text-align: center;
   border-radius: 5px;
+  
 }
-.time-slot.occupied {
+.plage-horaire.occupied {
   background: #444;
   color: white;
 }
-.time-slot a {
+.plage-horaire a {
   color: #007bff;
   text-decoration: none;
+}
+
+.horaires{
+  
+  background-color: black;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+  margin-left: 65vh;
+  margin-right: 65vh;
+  padding: 5vh;
+
+}
+
+#title-horaire{
+  text-align: center;
+  color: white;
+  margin-bottom: 5vh;
+
 }

@@ -86,16 +86,16 @@ def reserver():
 
     
     if request.method == 'POST':
-
+        user_id = session.get('id_personne')
         
         motif=request.form.get('motif')
         db = get_db()
         
 
-        if selected_time and selected_date and motif:
+        if selected_time and selected_date and motif and user_id :
 
             try:                   
-                db.execute ("INSERT INTO 'rendez-vous' (heure, date, motif) VALUES (?, ?, ?)",(selected_time, selected_date, motif))
+                db.execute ("INSERT INTO 'rendez-vous' (heure, date, motif, id_personne) VALUES (?, ?, ?, ?)",(selected_time, selected_date, motif, user_id))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
                 # On ferme la connexion à la base de données pour éviter les fuites de mémoire

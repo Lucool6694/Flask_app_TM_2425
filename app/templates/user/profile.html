@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="content-user">
+  <div class='content-user'>
     <div>
       <div id="profile-logo">
         <img  src="{{url_for('static', filename='imgs/avatar.png')}}" alt="profile-photo">
@@ -19,8 +19,32 @@
         <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
 
       </div>
-      <div id="profile-rdv">
+      <div id='profile-rdv'>
         <h2>Mes rendez-vous</h2>
+        <p>{{ appointments | safe }}</p>
+        {% if appointments %}
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Motif</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td>{{ appt['date'] }}</td>
+                    <td>{{ appt['heure'] }}</td>
+                    <td>{{ appt['motif'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+          <p>pas de rendez-vous prochainement</p>
+        {% endif %}
 
       </div>
     </div>
