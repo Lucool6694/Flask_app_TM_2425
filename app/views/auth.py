@@ -86,7 +86,7 @@ def login():
         if error is None:
             session.clear()
             
-            session['id_personne'] = user.id
+            session['id_personne'] = user['id_personne']
 
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
             return redirect("/")
