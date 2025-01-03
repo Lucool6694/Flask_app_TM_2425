@@ -376,6 +376,13 @@ header{
 
 }
 
+#motif{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 
 
 #calendar {
