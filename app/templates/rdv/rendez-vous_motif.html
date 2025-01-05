@@ -5,16 +5,18 @@
 {% endblock %}
 
 {% block content%}
-<form method="post">
+<div class="content-motif">  
+  <form method="post">
 
 
-  <label  for="motif">motif<br /></label>
-  <input  name="motif" id="motif" required><br />
+   <label id="title-motif" for="motif">motif<br /></label>
+   <textarea  name="motif" id="motif" required></textarea><br />
 
-  <div class="connexion-center">
-    <input id="connexion-button" type="submit" value="prendre rendez-vous">
-  </div>
-</form>
+   <div class="connexion-center">
+     <input id="connexion-button" type="submit" value="prendre rendez-vous">
+   </div>
+  </form>
+</div>
 {% for message in get_flashed_messages() %}
 <div>{{ message }}</div>
 {% endfor %}
