@@ -17,4 +17,4 @@ def close_db():
 
     # Au cas où la suppression n'aurait pas fonctionné, on ferme la connexion.
     if db is not None:
-        db.close()
+        db.close() 
