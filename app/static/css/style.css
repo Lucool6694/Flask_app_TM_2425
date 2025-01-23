@@ -466,3 +466,51 @@ header{
   margin-bottom: 5vh;
 
 }
+
+
+/*blogs*/
+
+#image_blog{
+  width: 40vh;
+  height: 30vh;
+}
+
+.blog{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+
+.blog-titre{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  flex: 1;
+}
+
+.blog-texte{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vh;
+  margin-right: 5vh;
+}
+
+.fond-blog{
+  height:60vh;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-color: #8b8d8d;
+}
+
+.home-blog{
+  height: 140vh;
+}

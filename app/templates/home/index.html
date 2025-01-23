@@ -14,7 +14,24 @@
   </div>
   <div class="home-blog">
 
+    {% for post in posts %}
+    <div class="fond-blog"> 
+    
+      <div class="blog">
+      
+       <img id="image_blog" src="{{ url_for('static', filename='uploads/' ~ post['image']) }}" alt="Blog Image">
 
+       <div class="blog-titre">
+         <h2>{{ post['titre'] }}</h2>
+        
+       </div>
+      </div>
+      <div class="blog-texte">
+        <p>{{ post['texte'] }}</p>
+      </div>
+    </div>
+    
+    {% endfor %}
 
 
 
