@@ -7,16 +7,114 @@
 
 {% block content%}
   
-<p class="titre_creation">Ajouter un Blog</p>
+
 
 <form method="POST" enctype="multipart/form-data">
 
-  <input type="text" name="title" placeholder="Title" required>
-  <textarea name="content" placeholder="Content" required></textarea>
-  <input type="file" name="image" accept="image/*" required>
-  <button type="submit">Submit</button>
   
+  <div class="fond-blog-creation"> 
+    <h2 id="titre_creation">Ajouter un Blog</h2>
+    <div class="blog">
+      
+     
+    <input type="file" name="image" accept="image/*" required>
+
+     <div class="blog-titre">
+      <input type="text" name="titre" placeholder="Titre" required>
+      
+     </div>
+    </div>
+    <div class="blog-texte">
+      <textarea id="texte-creation" name="content" placeholder="Contenu" required></textarea>
+    </div>
+    <div id="bouton-creation" >
+     <button  type="submit">Créer</button>
+    </div>
+  </div>
+
+
+
+
 </form>
 
+
+{% for post in posts %}
+    <div class="fond-blog" id="post-{{ post['id_articles'] }}"> 
+        <div class="blog">
+            <img id="image_blog" id="image_blog_{{ post['id_articles'] }}" src="{{ url_for('static', filename='uploads/' ~ post['image']) }}" alt="Blog Image">
+
+            <div class="blog-titre">
+                <h2 id="titre_{{ post['id_articles'] }}">{{ post['titre'] }}</h2>
+                <button class="edit-button" onclick="editPost({{ post['id_articles'] }})">Modifier</button>
+            </div>
+        </div>
+        <div class="blog-texte">
+            <p id="texte_{{ post['id_articles'] }}">{{ post['texte'] }}</p>
+        </div>
+
+        
+        <form id="edit-form-{{ post['id_articles'] }}" class="edit-form" style="display: none;" onsubmit="savePost(event, {{ post['id_articles'] }})">
+          <input type="hidden" name="edit_post_id" value="{{ post['id_articles'] }}">
+          <input type="file" id="edit-image-{{ post['id_articles'] }}" name="edit_image">
+          <input type="text" id="edit-titre-{{ post['id_articles'] }}" name="edit_title" value="{{ post['titre'] }}" required>
+          <textarea id="edit-texte-{{ post['id_articles'] }}" name="edit_content" required>{{ post['texte'] }}</textarea>
+          <button type="submit">Enregistrer</button>
+          <button type="button" onclick="cancelEdit({{ post['id_articles'] }})">Annuler</button>
+        </form> 
+          
+
+        </form>
+    </div>
+{% endfor %}
+
+
+
+
+<script>
+  function editPost(postId) {
+      document.getElementById(`titre_${postId}`).style.display = "none";
+      document.getElementById(`texte_${postId}`).style.display = "none";
+      document.getElementById(`edit-form-${postId}`).style.display = "block";
+  }
+  
+  function cancelEdit(postId) {
+      document.getElementById(`edit-form-${postId}`).style.display = "none";
+      document.getElementById(`titre_${postId}`).style.display = "block";
+      document.getElementById(`texte_${postId}`).style.display = "block";
+  }
+  
+  function savePost(event, postId) {
+      event.preventDefault();
+      
+      let formData = new FormData();
+      formData.append("edit_post_id", postId);
+      formData.append("edit_title", document.getElementById(`edit-titre-${postId}`).value);
+      formData.append("edit_content", document.getElementById(`edit-texte-${postId}`).value);
+      let imageFile = document.getElementById(`edit-image-${postId}`).files[0];
+      if (imageFile) {
+          formData.append("edit_image", imageFile);
+      }
+  
+      fetch("/blogs", {
+          method: "POST",
+          body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.success) {
+              document.getElementById(`titre_${postId}`).innerText = data.titre;
+              document.getElementById(`texte_${postId}`).innerText = data.texte;
+              if (data.image_url) {
+                  document.getElementById(`image_blog_${postId}`).src = data.image_url;
+              }
+              cancelEdit(postId);
+          } else {
+              alert("Erreur: " + data.error);
+          }
+      })
+      .catch(error => console.error("Erreur:", error));
+  }
+  </script>
+  
 
 {% endblock %}

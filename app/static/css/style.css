@@ -327,9 +327,18 @@ header{
 
 
 }
+
+#titre_creation{
+  display: flex;
+  justify-content: center;
+  
+  margin-bottom: 5vh;
+  
+}
+
+
+
 /* Connexion*/
-
-
 
 
 
@@ -382,17 +391,22 @@ header{
 }
 
 .rdv-connexion{
-  height: 100vh; 
+  height: 70vh; 
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #8b8d8d;
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+  margin-left: 60vh;
+  margin-right: 60vh;
 
 }
 
 #motif{
   
-  width: 100%;
-  height: 70%;
+  width: 50vh;
+  height: 30vh;
 
 }
 
@@ -513,4 +527,24 @@ header{
 
 .home-blog{
   height: 140vh;
+}
+
+.fond-blog-creation{
+  height: 60vh;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-color: #8b8d8d;
+}
+
+#bouton-creation{
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+#texte-creation{
+  width: 60vh;
+  height: 25vh;
 }
