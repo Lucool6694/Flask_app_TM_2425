@@ -46,7 +46,10 @@
           <p>pas de rendez-vous prochainement</p>
         {% endif %}
 
-      </div>
+     </div>
+     {% if session['id_personne'] == 4 %}
+        <a  href="{{ url_for('rdv.planing') }}">voir rendez-vous</a>
+     {% endif %}
     </div>
   </div>  
 {% endblock %}
