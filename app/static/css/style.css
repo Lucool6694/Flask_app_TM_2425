@@ -481,6 +481,19 @@ header{
 
 }
 
+#choix-date{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#planing{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
 /*blogs*/
 

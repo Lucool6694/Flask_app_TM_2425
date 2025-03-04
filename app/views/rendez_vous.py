@@ -15,37 +15,8 @@ rdv_bp = Blueprint('rdv', __name__, url_prefix="/rdv")
 @rdv_bp.route('/date', methods=('GET', 'POST')) 
 def prendre_rendez_vous():
    
-
-
-    if request.method == 'POST':
-
-        
-        
-        heure = request.form.get['heure']
-        date = request.form.get['date']
-        motif = request.form.get['motif']
-        
-
-        
-        db = get_db()
-
-        
-        if heure and date and motif:
-            try:
-                db.execute ("INSERT INTO rendez-vous (heure, date, motif) VALUES (?, ?, ?)",(heure, date, motif))
-                # db.commit() permet de valider une modification de la base de données
-                db.commit()
-                # On ferme la connexion à la base de données pour éviter les fuites de mémoire
-                close_db()
-                return redirect(url_for("rdv.prendre_rendez_vous"))
-            except db.IntegrityError:
-
-                # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
-                # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
-                error = "tous les champs doivent être rempli"
-                flash(error)
-    else:       
-        return render_template('rdv/rendez-vous.html')
+      
+    return render_template('rdv/rendez-vous.html')
 
 
                 
@@ -142,15 +113,12 @@ def planing():
     close_db()
     
     
-    if not reservations:
-        return render_template('rdv/rendez-vous_planing.html', date=selected_date, time_slots={})
-    
 
     
 
     reservation_details = {row["heure"]: {"Nom": row["nom"], "Motif": row["motif"]} for row in reservations}
 
-# Create the final time_slots dictionary
+
     time_slots = {
         slot: reservation_details[slot] if slot in reservation_details else "Disponible"
         for slot in all_time_slots

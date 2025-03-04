@@ -5,8 +5,26 @@
 {% endblock %}
 
 {% block content%}
+
 <div class="horaires">
+    
     <h2 id="title-horaire">Horaires du {{ date }}</h2>
+    <div id="choix-date">
+        <h2>Changer de date</h2>
+    <input id="calendar" type="text" placeholder="Sélectionner une date">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#calendar", {
+         altInput: true,
+         altFormat: "F j, Y",
+         dateFormat: "Y-m-d",
+         defaultDate: "{{ date }}", 
+         onChange: function(selectedDates, dateStr, instance) {
+            window.location.href = `/rdv/planing?date=${dateStr}`;
+         }
+        });
+    </script>
+    </div>
     <div>
         {% for time, details in time_slots.items() %}
             <div class="plage-horaire {% if details != 'Disponible' %}occupied{% endif %}">
