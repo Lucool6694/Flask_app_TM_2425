@@ -436,7 +436,11 @@ header{
   
 }
 
-
+#confirmation-rdv{
+  font-size: 90%;
+  display: flex;
+  justify-content: center;
+}
 
 #calendar {
   margin: 50px auto;
@@ -560,4 +564,38 @@ header{
 #texte-creation{
   width: 60vh;
   height: 25vh;
+}
+
+/*infos*/
+
+.info-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 10vh;
+  margin-bottom: 10vh;
+  margin-left: 10vh;
+  margin-right: 10vh;
+  background-color: #8b8d8d;
+}
+.info-content p{
+  font-size: 150%;
+  margin-left: 10vh;
+  margin: 10vh;
+  
+}
+
+#title-info{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+  
+}
+
+#image-info{
+  width: 85vh;
+  height: 100vh;
+  
 }

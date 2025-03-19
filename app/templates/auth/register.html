@@ -25,9 +25,12 @@
 
         <label for="password">Mot de passe<br /></label>
         <input type="password" name="password" id="password" required><br />
+        
         <div class="connexion-center">
           <input id="connexion-button" type="submit" value="Créer">
         </div>
+        
+        </form>
       </form>
     
       {% for message in get_flashed_messages() %}
