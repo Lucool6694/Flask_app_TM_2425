@@ -4,8 +4,8 @@ from app.db.db import get_db, close_db
 import os
 from sqlite3 import connect
 from datetime import datetime
-
-
+from app.__init__ import mail
+from flask_mail import Message
 
 
 rdv_bp = Blueprint('rdv', __name__, url_prefix="/rdv")
@@ -55,33 +55,53 @@ def reserver():
     selected_date = request.args.get('date')
     selected_time = request.args.get('time')
     
-
-    
     if request.method == 'POST':
         user_id = session.get('id_personne')
-        
-        motif=request.form.get('motif')
+        motif = request.form.get('motif')
         db = get_db()
-        
 
-        if selected_time and selected_date and motif and user_id :
+        if selected_time and selected_date and motif and user_id:
+            try:
+               
+                user = db.execute("SELECT email FROM personnes WHERE id_personne = ?", (user_id,)).fetchone()
+                
+                if user:
+                    user_email = user[0]  
 
-            try:                   
-                db.execute ("INSERT INTO 'rendez-vous' (heure, date, motif, id_personne) VALUES (?, ?, ?, ?)",(selected_time, selected_date, motif, user_id))
-                # db.commit() permet de valider une modification de la base de données
-                db.commit()
-                # On ferme la connexion à la base de données pour éviter les fuites de mémoire
-                close_db()
-                
-                
-            except Exception as e:  # Catch all exceptions for debugging
-                error = f"An error occurred: {e}"
-                flash(error)   
-    
+                    
+                    db.execute("INSERT INTO 'rendez-vous' (heure, date, motif, id_personne) VALUES (?, ?, ?, ?)",
+                               (selected_time, selected_date, motif, user_id))
+                    db.commit()
+                    close_db()
+
+                    
+                    msg = Message("Confirmation de votre rendez-vous",
+                                  recipients=[user_email])
+                    msg.body = f"""
+                    Bonjour,
+
+                    Votre rendez-vous a été confirmé avec les détails suivants :
+                    - 📅 Date : {selected_date}
+                    - ⏰ Heure : {selected_time}
+                    - 📝 Motif : {motif}
+
+                    Merci et à bientôt !
+                    """
+                    mail.send(msg)  
+                    print(msg)
+
+                    flash("Votre rendez-vous a été enregistré et un e-mail de confirmation a été envoyé.")
+
+                else:
+                    flash("Impossible de récupérer votre adresse e-mail.")
+
+            except Exception as e:
+                error = f"Une erreur s'est produite : {e}"
+                flash(error)
+
             return redirect("/")
-                
-    else:
-        return render_template('rdv/rendez-vous_motif.html', date=selected_date, time=selected_time)
+    
+    return render_template('rdv/rendez-vous_motif.html', date=selected_date, time=selected_time)
 
     
 @rdv_bp.route('/planing', methods=['GET', 'POST'])
