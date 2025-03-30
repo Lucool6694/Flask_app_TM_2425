@@ -88,7 +88,7 @@ def reserver():
                     Merci et à bientôt !
                     """
                     mail.send(msg)  
-                    print(msg)
+                    
 
                     flash("Votre rendez-vous a été enregistré et un e-mail de confirmation a été envoyé.")
 
