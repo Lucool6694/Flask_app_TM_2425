@@ -280,7 +280,30 @@ header{
 
 }
 
+#maj-profil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5vh; 
+  gap: 2vh;
+  
+}
 
+#maj-bouton {
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+
+.form-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
+  
+}
  
 
 

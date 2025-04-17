@@ -14,11 +14,17 @@ def allowed_file(filename):
 
 
 @blogs_bp.route('/blogs', methods=('GET', 'POST'))
+
 def blogs():
     db = get_db()
     query = "SELECT id_articles, titre, texte, image FROM articles ORDER BY id_articles DESC LIMIT 2"
     cursor = db.execute(query)
     posts = cursor.fetchall()
+   
+    if session.get('id_personne') != 4:
+        flash("Acces refusé")
+        close_db()
+        return redirect("/")
 
     if request.method == 'POST':
         if "edit_post_id" in request.form:  #Détecte si l'utilisateur veut éditer un blog existant

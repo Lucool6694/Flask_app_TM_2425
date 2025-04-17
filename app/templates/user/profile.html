@@ -15,6 +15,33 @@
         <li><h3>Prénom: {{g.user.prenom}}</h3></li>
         
       </ul>
+
+      <div id="maj-bouton">
+      <button  type="button" onclick="toggleForm()">Changer les infos</button>
+      </div>
+      
+      <script>
+        function toggleForm() {
+          const form = document.getElementById("editForm");
+          form.style.display = form.style.display === "none" ? "block" : "none";
+        }
+      </script> 
+
+      <div id="editForm" style="display: none;">
+      
+        <div id="maj-profil">
+          <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" name="nom" id="nom" value="{{ g.user.nom }}">
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom:</label>
+            <input type="text" name="prenom" id="prenom" value="{{ g.user.prenom }}">
+          </div>
+          <button type="submit">Mettre à jour</button>
+        </div>
+      </div>
+      
       <div id="logout-button">
         <a href="{{ url_for('auth.logout') }}">Se déconnecter</a>
 
