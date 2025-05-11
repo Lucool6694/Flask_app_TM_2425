@@ -1,5 +1,5 @@
 import os
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify)
 from app.db.db import get_db, close_db
 from werkzeug.utils import secure_filename
 
@@ -30,7 +30,7 @@ def blogs():
         if "edit_post_id" in request.form:  #Détecte si l'utilisateur veut éditer un blog existant
             return edit_post(request.form, request.files)
         else:  #Sinon, l'utilisateur veut créer un nouveau blog
-            titre = request.form['title']
+            titre = request.form['titre']
             texte = request.form['content']
             image = request.files['image']
 

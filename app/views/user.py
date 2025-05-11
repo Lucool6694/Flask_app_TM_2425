@@ -51,7 +51,7 @@ def show_profile():
         if new_nom and new_prenom:
             maj_user_info(user_id, new_nom, new_prenom)  
             flash("Profil mis à jour avec succès.", "succes")
-            return render_template('user/profile.html', appointments = user_appointments)
+            return redirect(url_for('user.show_profile'))
 
         else:
             flash("Veuillez remplir tous les champs.", "Attention")
