@@ -27,11 +27,11 @@ def get_appointments_for_user(user_id):
         for appt in rdv
     ]
    
-def maj_user_info(user_id, nom, prenom):
+def maj_user_info(user_id, nom, prenom, adresse, telephone):
     db = get_db()
     db.execute(
-        'UPDATE personnes SET nom = ?, prenom = ? WHERE id_personne = ?',
-        (nom, prenom, user_id)
+        'UPDATE personnes SET nom = ?, prenom = ?, adresse = ?, telephone = ? WHERE id_personne = ?',
+        (nom, prenom, adresse, telephone, user_id)
     )
     db.commit()
     close_db()
@@ -47,9 +47,11 @@ def show_profile():
     if request.method == 'POST':
         new_nom = request.form.get('nom')
         new_prenom = request.form.get('prenom')
-
-        if new_nom and new_prenom:
-            maj_user_info(user_id, new_nom, new_prenom)  
+        new_adresse = request.form.get('adresse')
+        new_telephone = request.form.get('telephone')
+        
+        if new_nom and new_prenom and new_adresse and new_telephone:
+            maj_user_info(user_id, new_nom, new_prenom, new_adresse, new_telephone)  
             flash("Profil mis à jour avec succès.", "succes")
             return redirect(url_for('user.show_profile'))
 

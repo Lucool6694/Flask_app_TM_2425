@@ -38,6 +38,15 @@
             <label for="prenom">Prénom:</label>
             <input type="text" name="prenom" id="prenom" value="{{ g.user.prenom }}">
           </div>
+          <div class="form-group">
+            <label for="adresse">Adresse:</label>
+           <input type="text" name="adresse" id="adresse" value="{{ g.user.adresse }}">
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone:</label>
+            <input type="text" name="telephone" id="telephone" value="{{ g.user.telephone }}">
+          </div>
+          
           <button type="submit">Mettre à jour</button>
         </div>
       </div>
